@@ -1,4 +1,4 @@
-# CENG_3511_Midterm_Project
+# CENG-3511 Artificial Intelligence Midterm Project
 ## Smart Path Finder with Leaflet and Dijkstra's Algorithm  
 
 ## :bell: There is a detailed report existing in the repo.    
