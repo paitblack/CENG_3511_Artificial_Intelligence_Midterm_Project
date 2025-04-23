@@ -3,6 +3,7 @@ import json
 from dijkstra import dijkstra
 from geopy.distance import geodesic
 import time
+from A_star_search import a_star_search
 
 app = Flask(__name__)
 
@@ -51,7 +52,23 @@ def route():
         return jsonify({"error": "cok yakin"}), 400
 
     try:
+        astar_start = time.time()
+        astar_path, astar_distance = a_star_search(graph, start_node, end_node)
+        astar_time = (time.time() - astar_start) * 1000
+
+        print("--------------------------------------------------------")
+        print("A* Search Results:")
+        print("Path Nodes:", astar_path)
+        print("Distance:", astar_distance)
+        print("Steps:", len(astar_path))
+        print("Execution Time (ms):", astar_time)
+        print("--------------------------------------------------------")
+
+        dijkstra_time_start = time.time()
         path_nodes, distance = dijkstra(graph, start_node, end_node) 
+        dijkstra_time_end = (time.time() - dijkstra_time_start) * 1000
+        print("Dijkstra's Execution Time: ", dijkstra_time_end)
+        
         print("Bulunan :", path_nodes)
         
         if not path_nodes:
